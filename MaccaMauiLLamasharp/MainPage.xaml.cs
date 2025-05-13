@@ -14,9 +14,9 @@ public partial class MainPage : ContentPage
 		InitializeComponent();
 	}
 
-	async void OnButtonClicked (object sender, EventArgs e)
+	async void OnButtonClicked(object sender, EventArgs e)
 	{
-		
+
 		string[] fileNames = { "Llama-3.2-1B-Instruct-Q4_0.gguf" };
 
 		// foreach (var fileName in fileNames)
@@ -57,7 +57,7 @@ public partial class MainPage : ContentPage
 		};
 
 
-		string userInput = "HELLO, BOB. TELL ME THE HIGHT OF THE TOWER EIFFEL.";
+		string userInput = tx_input.Text;
 
 		Debug.WriteLine($"answer:");
 
@@ -70,7 +70,7 @@ public partial class MainPage : ContentPage
 			lbl.Text += text;
 			Debug.Write(text);
 		}
-		
+
 
 	}
 }

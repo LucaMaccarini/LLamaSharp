@@ -8,18 +8,22 @@
             Padding="30,0"
             Spacing="25">
 
-
-            <Button Text="Click me!"
+            <Entry
+                x:Name="tx_input"
+                Placeholder="Scrivi qualcosa da chiedere..."
                 VerticalOptions="Center"
-                HorizontalOptions="Center"
-                Clicked="OnButtonClicked" />
+                HorizontalOptions="Center"/>
+
+
+            <Button Text="Chiedi"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Clicked="OnButtonClicked"/>
 
             <Label
-                x:Name="lbl"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
+                x:Name="lbl"/>
 
-           
+
         </VerticalStackLayout>
     </ScrollView>
 
