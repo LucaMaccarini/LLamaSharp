@@ -8,6 +8,7 @@ namespace MaccaMauiLLamasharp;
 
 public partial class MainPage : ContentPage
 {
+	
 
 	public MainPage()
 	{
@@ -19,17 +20,19 @@ public partial class MainPage : ContentPage
 
 		string[] fileNames = { "Llama-3.2-1B-Instruct-Q4_0.gguf" };
 
-		// foreach (var fileName in fileNames)
-		// {
-		// 	using Stream inputStream = await FileSystem.Current.OpenAppPackageFileAsync(fileName);
-		// 	string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
+		foreach (var fileName in fileNames)
+		{
+			string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
 
-		// 	using FileStream outputStream = File.Create(targetFile);
-		// 	await inputStream.CopyToAsync(outputStream);
 
-		// 	outputStream.Close();
-		// 	inputStream.Close();
-		// }
+			using Stream inputStream = await FileSystem.Current.OpenAppPackageFileAsync(fileName);
+			using FileStream outputStream = File.Create(targetFile);
+			await inputStream.CopyToAsync(outputStream);
+
+			outputStream.Close();
+			inputStream.Close();
+			
+		}
 
 		string modelPath = Path.Combine(FileSystem.Current.AppDataDirectory, fileNames[0]);
 

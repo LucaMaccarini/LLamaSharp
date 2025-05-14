@@ -12,7 +12,9 @@
                 x:Name="tx_input"
                 Placeholder="Scrivi qualcosa da chiedere..."
                 VerticalOptions="Center"
-                HorizontalOptions="Center"/>
+                HorizontalOptions="Center"
+                
+                />
 
 
             <Button Text="Chiedi"
