@@ -1,4 +1,5 @@
 using AppMuseo.Logic;
+using AppMuseo.Logic.Services;
 using AppMuseo.Views;
 using Microsoft.Extensions.Logging;
 
@@ -20,12 +21,11 @@ namespace AppMuseo
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<ISchedaOperaDataProvider, SchedaOperaDataProvider>();
 
             builder.Services.AddSingleton<ILLamaCpp>(sp =>
                 new LLamaCpp("Llama-3.2-1B-Instruct-Q4_0.gguf", 1024, 5)
             );
-
-            builder.Services.AddSingleton<ITest, Test>();
 
             builder.Services.AddTransient<AudioGuida>();
 

@@ -1,4 +1,4 @@
-using AppMuseo.Logic;
+using AppMuseo.Logic.Services;
 
 namespace AppMuseo.Views;
 
@@ -10,20 +10,6 @@ public partial class AudioGuida : ContentPage
         InitializeComponent();
         this.llm = llm;
     }
-
-    //public AudioGuida(ITest test)
-    //{
-    //    InitializeComponent();
-    //    this.llm = new LLamaCpp("Llama-3.2-1B-Instruct-Q4_0.gguf", 1024, 5);
-    //    lbl_log.Text = test.a();
-    //}
-
-    //void CaricaModello(object sender, EventArgs e)
-    //{
-    //    lbl_log.Text = "...";
-    //    llm = new LLamaCpp("Llama-3.2-1B-Instruct-Q4_0.gguf", 1024, 5);
-    //    lbl_log.Text = "Modello caricato con successo!";
-    //}
 
     private async void EstraiModello(object sender, EventArgs e)
     {

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AppMuseo.Logic
+namespace AppMuseo.Logic.Services
 {
-    public interface ITest
+    public interface ILLamaCpp
     {
-        public string a();
+        IAsyncEnumerable<string> ChatAsync(string input);
     }
 }
