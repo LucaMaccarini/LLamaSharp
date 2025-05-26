@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AppMuseo.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AppMuseo"
+    xmlns:views="clr-namespace:AppMuseo.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="AppMuseo">
+
+    <TabBar>
+        <ShellContent Title="Audio" ContentTemplate="{DataTemplate views:AudioGuida}" />
+        <ShellContent Title="Main Page" ContentTemplate="{DataTemplate local:MainPage}" />
+    </TabBar>
+
+</Shell>

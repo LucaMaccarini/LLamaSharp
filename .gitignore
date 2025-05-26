@@ -354,3 +354,4 @@ site/
 /LLama/runtimes/release_id.txt
 
 /MaccaMauiLLamasharp/**/*.gguf
+/AppMuseo/**/*.gguf
