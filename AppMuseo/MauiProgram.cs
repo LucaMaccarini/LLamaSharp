@@ -23,9 +23,7 @@ namespace AppMuseo
 #endif
             builder.Services.AddSingleton<ISchedaOperaDataProvider, SchedaOperaDataProvider>();
 
-            builder.Services.AddSingleton<ILLamaCpp>(sp =>
-                new LLamaCpp("Llama-3.2-1B-Instruct-Q4_0.gguf", 1024, 5)
-            );
+            builder.Services.AddSingleton<ILLamaCpp, LLamaCpp>();
 
             builder.Services.AddTransient<AudioGuida>();
 

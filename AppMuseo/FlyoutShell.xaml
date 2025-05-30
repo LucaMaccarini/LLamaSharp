@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="AppMuseo.FlyoutShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:AppMuseo"
+    xmlns:views="clr-namespace:AppMuseo.Views"
+    
+    Title="AppMuseo">
+
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Label 
+             Text="Audio Guida AI"
+             HorizontalOptions="Center"
+         />
+
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <Label 
+             Text="0.0.1"
+             HorizontalOptions="Center"
+           />
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
+
+    <FlyoutItem Title="ShellContent">
+        <ShellContent Title="Audio Guida" ContentTemplate="{DataTemplate views:AudioGuida}" />
+    </FlyoutItem>
+
+</Shell>

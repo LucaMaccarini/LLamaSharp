@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppMuseo.Logic.Services
 {
-    internal interface ISchedaOperaDataProvider
+    public interface ISchedaOperaDataProvider
     {
         public string GetSchedaOperaData(string nomeOpera);
     }

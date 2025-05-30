@@ -1,36 +1,23 @@
 using AppMuseo.Logic.Services;
+using System.Diagnostics;
 
 namespace AppMuseo.Views;
 
 public partial class AudioGuida : ContentPage
 {
     private readonly ILLamaCpp llm;
-    public AudioGuida(ILLamaCpp llm)
+    private readonly ISchedaOperaDataProvider schedaOperaDataProvider;
+    public AudioGuida(ILLamaCpp llm, ISchedaOperaDataProvider schedaOperaDataProvider)
     {
         InitializeComponent();
         this.llm = llm;
+        this.schedaOperaDataProvider = schedaOperaDataProvider;
     }
 
-    private async void EstraiModello(object sender, EventArgs e)
+    private void CaricaModello(object sender, EventArgs e)
     {
-        lbl_log.Text = "...";
-        string[] fileNames = { "Llama-3.2-1B-Instruct-Q4_0.gguf" };
-
-        foreach (var fileName in fileNames)
-        {
-            string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, fileName);
-
-            if (!File.Exists(targetFile))
-            {
-                using Stream inputStream = await FileSystem.Current.OpenAppPackageFileAsync(fileName);
-                using FileStream outputStream = File.Create(targetFile);
-                await inputStream.CopyToAsync(outputStream);
-                outputStream.Close();
-                inputStream.Close();
-            }
-        }
-
-        lbl_log.Text = "Modello estratto con successo!";
+        llm.LoadModel("Llama-3.2-3B-Instruct-Q4_0.gguf");
+        llm.AddAndProcessSystemMessage("Transcript of a dialog where the User sends a JSON about an artwork to Anna, an expert museum guide. Anna replies with a warm, immersive spoken-style description, using only the JSON data. She starts with title and author, then describes style, technique, subject, and location. No lists, no invented info.");
     }
 
     private async void ScriviAlModello(object sender, EventArgs e)
@@ -44,4 +31,20 @@ public partial class AudioGuida : ContentPage
             }
         }
     }
+
+    private async void GeneraAudioGuida(object sender, EventArgs e)
+    {
+        if (llm is not null)
+        {
+            await foreach (
+            var text
+            in llm.ChatAsync(schedaOperaDataProvider.GetSchedaOperaData(lbl_text.Text)))
+            {
+                lbl_risp.Text += text;
+                //Debug.Write(text);
+            }
+        }
+    }
+
+
 }

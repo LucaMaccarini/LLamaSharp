@@ -5,12 +5,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AppMuseo"
     xmlns:views="clr-namespace:AppMuseo.Views"
-    Shell.FlyoutBehavior="Disabled"
+    FlyoutBehavior="Disabled"
     Title="AppMuseo">
 
-    <TabBar>
-        <ShellContent Title="Audio" ContentTemplate="{DataTemplate views:AudioGuida}" />
-        <ShellContent Title="Main Page" ContentTemplate="{DataTemplate local:MainPage}" />
-    </TabBar>
-
+    <ShellContent Title="Audio" ContentTemplate="{DataTemplate views:StartPage}" />
+   
 </Shell>
