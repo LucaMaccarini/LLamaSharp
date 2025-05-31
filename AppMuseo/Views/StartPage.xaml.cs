@@ -6,6 +6,18 @@ namespace AppMuseo.Views
     {
         private readonly ILLamaCpp llm;
 
+        const string modelName = "Llama-3.2-3B-Instruct-IQ4_XS.gguf";
+
+        const string systemPrompt = """  
+            You are Anna, a kind and cheerful museum guide. You are standing in front of a painting with a group of young children. You will receive a JSON input that describes the artwork. Use only the information in the JSON and do not add anything else. Do not mention the JSON or how it was used.
+
+            Speak with wonder and curiosity, like you're telling a magical story. Use short, simple sentences. Make the children feel amazed and happy to be in the museum.
+
+            Begin directly with the first spoken sentence, as if Anna is already speaking. Do not introduce the style, tone, or purpose. Do not write any preface like “Audio guide” or “In a gentle voice.” Just start speaking in character, immediately.
+
+            Wait for the JSON input. Once received, begin immediately with the audio guide.
+            """;
+
         public StartPage(ILLamaCpp llm)
         { 
             InitializeComponent();
@@ -15,6 +27,13 @@ namespace AppMuseo.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            await Task.Delay(300);
+
+            if (Application.Current == null)
+            {
+                await DisplayAlert("Error", "Application.Current is null. Unable to proceed.", "OK");
+                return;
+            }
 
             if (!await downloadAIModel())
             {
@@ -23,28 +42,14 @@ namespace AppMuseo.Views
             }
             ActInd_PresenceOfAIModel.IsRunning = false;
 
-            if (!llm.LoadModel("Llama-3.2-1B-Instruct-Q4_0.gguf"))
+            if (!llm.LoadModel(modelName))
             {
-                await DisplayAlert("Error", "Failed to load AI model. Please check the model file and try again.", "OK");
+                await DisplayAlert("Error", "Failed to load AI model.", "OK");
                 return;
             }
             ActInd_LoadedAIModel.IsRunning = false;
 
-            llm.AddSystemMessage("""
-                You are Anna, an expert and passionate museum guide.
-
-                You are having a conversation with a User who sends you a JSON file describing an artwork. Your task is to reply with a spoken-style, immersive monologue, as if you were guiding a visitor in a museum.
-
-                Your reply must follow these rules:
-
-                * Use only the data contained in the JSON.
-                * Do not invent or infer any additional facts.
-                * Start by stating the title of the work and the author.
-                * Then, in a natural, flowing speech, describe the artistic style, technique, subject, and location.
-                * Avoid using lists or bullet points.
-                * Keep a warm, human, and engaging tone, as if you were speaking to a curious visitor standing in front of the artwork.
-                
-                """);
+            llm.AddSystemMessage(systemPrompt);
             ActInd_SystemPromptLoaded.IsRunning = false;
 
             goToAppShell();
@@ -52,18 +57,15 @@ namespace AppMuseo.Views
 
         private void goToAppShell()
         {
-            var newShell = new FlyoutShell();
-            var currentWindow = Application.Current?.Windows.Count > 0 ? Application.Current.Windows[0] : null;
-
-            if (currentWindow != null)
+            if (Application.Current != null)
             {
-                currentWindow.Page = newShell;
+                Application.Current.MainPage = new FlyoutShell();
             }
         }
 
         private async Task<bool> downloadAIModel()
         {
-            string appPackagePath = "Llama-3.2-1B-Instruct-Q4_0.gguf";
+            string appPackagePath = modelName;
             string modelPath = Path.Combine(FileSystem.Current.AppDataDirectory, appPackagePath);
             if (!File.Exists(modelPath))
             {

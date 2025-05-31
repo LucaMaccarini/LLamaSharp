@@ -7,6 +7,7 @@ namespace AppMuseo
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(AudioGuida), typeof(AudioGuida));            
         }
     }
 }

@@ -4,24 +4,45 @@
              x:Class="AppMuseo.Views.AudioGuida"
              Title="AudioGuida">
     <VerticalStackLayout>
-
-        <Entry x:Name="lbl_text" Margin="10,10,10,10"/>
+        
+        <Entry x:Name="tx_text" Margin="10,10,10,10" />
         <Button 
             Text="Chiedi al modello"
             Margin="10,10,10,10"
             Clicked="ScriviAlModello"
             />
-        
-        <Button 
-        Text="Genera Audio Guida"
-        Margin="10,10,10,10"
-        Clicked="GeneraAudioGuida"
-        />
-        <Label
-            x:Name="lbl_risp"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-            />
+
+        <HorizontalStackLayout>
+
+            <Button 
+                Text="Genera Audio Guida"
+                Margin="10,10,10,10"
+                Clicked="GeneraAudioGuida"
+                />
+
+            <Button 
+                Text="leggi"
+                Margin="10,10,10,10"
+                Clicked="Leggi"
+                />
+
+            <Button 
+                Text="Pulisci"
+                Margin="10,10,10,10"
+                Clicked="Pulisci"
+                />
+        </HorizontalStackLayout>
+
+
+            <Editor
+                 x:Name="lbl_risp"
+                 IsReadOnly="True" 
+                 FontSize="16"
+                AutoSize="TextChanges"
+                HeightRequest="470"
+                />
+
+
 
 
     </VerticalStackLayout>

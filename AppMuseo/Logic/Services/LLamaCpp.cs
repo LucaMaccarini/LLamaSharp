@@ -17,8 +17,7 @@ namespace AppMuseo.Logic.Services
 
         static InferenceParams defaultIferenceParams = new InferenceParams()
         {
-            MaxTokens = 5000,
-            AntiPrompts = new List<string> { "User:" },
+            AntiPrompts = new List<string> {"If you want to hear more about this artwork, just ask me!", "I hope you enjoyed this story!", "User:", },
             SamplingPipeline = new DefaultSamplingPipeline(),
         };
 
@@ -48,7 +47,8 @@ namespace AppMuseo.Logic.Services
 
                 var parameters = new ModelParams(modelPath)
                 {
-                    ContextSize = contextSize
+                    ContextSize = contextSize,
+                    GpuLayerCount = 5,
                 };
 
                 var model = LLamaWeights.LoadFromFile(parameters);
