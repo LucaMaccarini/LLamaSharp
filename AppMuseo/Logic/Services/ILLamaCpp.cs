@@ -8,10 +8,10 @@ namespace AppMuseo.Logic.Services
 {
     public interface ILLamaCpp
     {
-        public void LoadModel(string appPackagePath, uint contextSize = 8000);
+        public bool LoadModel(string appPackagePath, uint contextSize = 8000);
         public IAsyncEnumerable<string> ChatAsync(string input);
-        public void AddAndProcessSystemMessage(string message);
-        public void AddAndProcessAssistantMessage(string message);
-        public void AddAndProcessUserMessage(string message);
+        public void AddSystemMessage(string message);
+        public void AddAssistantMessage(string message);
+        public void AddUserMessage(string message);
     }
 }

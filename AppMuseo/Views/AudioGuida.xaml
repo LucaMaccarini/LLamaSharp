@@ -5,13 +5,6 @@
              Title="AudioGuida">
     <VerticalStackLayout>
 
-        <HorizontalStackLayout  HorizontalOptions="Center">
-            <Button Text="Carica Modello"
-             VerticalOptions="Center"
-             HorizontalOptions="Center"
-             Clicked="CaricaModello"/>
-        </HorizontalStackLayout>
-
         <Entry x:Name="lbl_text" Margin="10,10,10,10"/>
         <Button 
             Text="Chiedi al modello"

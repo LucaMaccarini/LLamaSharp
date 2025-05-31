@@ -25,7 +25,9 @@ namespace AppMuseo
 
             builder.Services.AddSingleton<ILLamaCpp, LLamaCpp>();
 
+            builder.Services.AddTransient<StartPage>();
             builder.Services.AddTransient<AudioGuida>();
+            
 
             return builder.Build();
         }

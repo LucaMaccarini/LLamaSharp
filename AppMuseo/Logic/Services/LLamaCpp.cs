@@ -14,6 +14,14 @@ namespace AppMuseo.Logic.Services
     internal class LLamaCpp : ILLamaCpp
     {
         private ChatSession? _session;
+
+        static InferenceParams defaultIferenceParams = new InferenceParams()
+        {
+            MaxTokens = 5000,
+            AntiPrompts = new List<string> { "User:" },
+            SamplingPipeline = new DefaultSamplingPipeline(),
+        };
+
         ChatSession Session
         {
             get
@@ -28,35 +36,36 @@ namespace AppMuseo.Logic.Services
             }
         }
 
-        public void AddAndProcessSystemMessage(string message) => Session.AddAndProcessSystemMessage(message);
-        public void AddAndProcessAssistantMessage(string message) => Session.AddAndProcessAssistantMessage(message);
-        public void AddAndProcessUserMessage(string message) => Session.AddAndProcessUserMessage(message);
+        public void AddSystemMessage(string message) => Session.AddSystemMessage(message);
+        public void AddAssistantMessage(string message) => Session.AddAssistantMessage(message);
+        public void AddUserMessage(string message) => Session.AddUserMessage(message);
 
-        static InferenceParams defaultIferenceParams = new InferenceParams()
+        public bool LoadModel(string appPackagePath, uint contextSize = 8000)
         {
-            MaxTokens = 5000,
-            AntiPrompts = new List<string> { "User:" }, 
-            SamplingPipeline = new DefaultSamplingPipeline(),
-        };
-
-        public void LoadModel(string appPackagePath, uint contextSize=8000)
-        {
-            var modelPath = Path.Combine(FileSystem.Current.AppDataDirectory, appPackagePath);
-
-            var parameters = new ModelParams(modelPath)
+            try
             {
-                ContextSize = contextSize
-            };
+                var modelPath = Path.Combine(FileSystem.Current.AppDataDirectory, appPackagePath);
 
-            var model = LLamaWeights.LoadFromFile(parameters);
-            var context = model.CreateContext(parameters);
-            var executor = new InteractiveExecutor(context);
+                var parameters = new ModelParams(modelPath)
+                {
+                    ContextSize = contextSize
+                };
 
-            ChatHistory chatHistory = new ChatHistory();
+                var model = LLamaWeights.LoadFromFile(parameters);
+                var context = model.CreateContext(parameters);
+                var executor = new InteractiveExecutor(context);
 
-            Session = new ChatSession(executor, chatHistory);
+                ChatHistory chatHistory = new ChatHistory();
+                Session = new ChatSession(executor, chatHistory);
 
-            Debug.WriteLine($"Model succesfully loaded");
+                Debug.WriteLine($"Model succesfully loaded");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error loading model: {ex.Message}");
+                return false;
+            }
         }
 
         public async IAsyncEnumerable<string> ChatAsync(string input)

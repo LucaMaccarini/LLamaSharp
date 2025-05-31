@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:AppMuseo"
     xmlns:views="clr-namespace:AppMuseo.Views"
-    
     Title="AppMuseo">
 
 
@@ -13,8 +12,7 @@
         <DataTemplate>
             <Label 
              Text="Audio Guida AI"
-             HorizontalOptions="Center"
-         />
+             HorizontalOptions="Center"/>
 
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>

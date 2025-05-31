@@ -12,28 +12,55 @@
                 Text="Verifica delle risorse"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
-            
+
             <HorizontalStackLayout>
                 <Label
                     Text="Presenza del modello AI"
-                    HorizontalOptions="StartAndExpand" />
+                    HorizontalOptions="StartAndExpand" 
+                    VerticalOptions="Center"/>
 
-                <Label
-                    x:Name="lbl_AIModelPresence"
-                    Text=""
-                    HorizontalOptions="EndAndExpand" />
+                <ActivityIndicator
+                    x:Name="ActInd_PresenceOfAIModel"
+                    IsRunning="True"
+                    IsVisible="True"
+                    HorizontalOptions="EndAndExpand" 
+                    VerticalOptions="Center"
+                    Margin="10,0,0,0"
+                    />
+
             </HorizontalStackLayout>
 
             <HorizontalStackLayout>
                 <Label
                     Text="Caricamento del modello AI"
-                    HorizontalOptions="StartAndExpand" />
+                    HorizontalOptions="StartAndExpand" 
+                    VerticalOptions="Center"/>
 
-                <Label
-                    x:Name="lbl_AIModelLoaded"
-                    Text=""
-                    HorizontalOptions="EndAndExpand" />
+                <ActivityIndicator
+                 x:Name="ActInd_LoadedAIModel"
+                 IsRunning="True"
+                 IsVisible="True"
+                 HorizontalOptions="EndAndExpand" 
+                 VerticalOptions="Center"
+                 Margin="10,0,0,0"   
+                 />
             </HorizontalStackLayout>
+
+            <HorizontalStackLayout>
+                <Label  
+                   Text="Caricamento del prompt di sistema"  
+                   HorizontalOptions="Center"  
+                   VerticalOptions="Center" />
+
+                <ActivityIndicator  
+                   x:Name="ActInd_SystemPromptLoaded"  
+                   IsRunning="True"  
+                   IsVisible="True"  
+                   HorizontalOptions="Center"  
+                   VerticalOptions="Center" 
+                   Margin="10,0,0,0"/>
+            </HorizontalStackLayout>
+
 
         </VerticalStackLayout>
     </ScrollView>
