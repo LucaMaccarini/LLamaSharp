@@ -12,40 +12,40 @@ namespace AppMuseo.Views
             this.llm = llm;
         }
 
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
 
-            //if (!await downloadAIModel())
-            //{
-            //    await DisplayAlert("Error", "Failed to download AI model. Please check your internet connection and try again.", "OK");
-            //    return;
-            //}
-            //ActInd_PresenceOfAIModel.IsRunning = false;
+            if (!await downloadAIModel())
+            {
+                await DisplayAlert("Error", "Failed to download AI model. Please check your internet connection and try again.", "OK");
+                return;
+            }
+            ActInd_PresenceOfAIModel.IsRunning = false;
 
-            //if (!llm.LoadModel("Llama-3.2-1B-Instruct-Q4_0.gguf"))
-            //{
-            //    await DisplayAlert("Error", "Failed to load AI model. Please check the model file and try again.", "OK");
-            //    return;
-            //}
-            //ActInd_LoadedAIModel.IsRunning = false;
+            if (!llm.LoadModel("Llama-3.2-1B-Instruct-Q4_0.gguf"))
+            {
+                await DisplayAlert("Error", "Failed to load AI model. Please check the model file and try again.", "OK");
+                return;
+            }
+            ActInd_LoadedAIModel.IsRunning = false;
 
-            //llm.AddSystemMessage("""
-            //    You are Anna, an expert and passionate museum guide.
+            llm.AddSystemMessage("""
+                You are Anna, an expert and passionate museum guide.
 
-            //    You are having a conversation with a User who sends you a JSON file describing an artwork. Your task is to reply with a spoken-style, immersive monologue, as if you were guiding a visitor in a museum.
+                You are having a conversation with a User who sends you a JSON file describing an artwork. Your task is to reply with a spoken-style, immersive monologue, as if you were guiding a visitor in a museum.
 
-            //    Your reply must follow these rules:
+                Your reply must follow these rules:
 
-            //    * Use only the data contained in the JSON.
-            //    * Do not invent or infer any additional facts.
-            //    * Start by stating the title of the work and the author.
-            //    * Then, in a natural, flowing speech, describe the artistic style, technique, subject, and location.
-            //    * Avoid using lists or bullet points.
-            //    * Keep a warm, human, and engaging tone, as if you were speaking to a curious visitor standing in front of the artwork.
+                * Use only the data contained in the JSON.
+                * Do not invent or infer any additional facts.
+                * Start by stating the title of the work and the author.
+                * Then, in a natural, flowing speech, describe the artistic style, technique, subject, and location.
+                * Avoid using lists or bullet points.
+                * Keep a warm, human, and engaging tone, as if you were speaking to a curious visitor standing in front of the artwork.
                 
-            //    """);
-            //ActInd_SystemPromptLoaded.IsRunning = false;
+                """);
+            ActInd_SystemPromptLoaded.IsRunning = false;
 
             goToAppShell();
         }
