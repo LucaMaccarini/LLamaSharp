@@ -10,5 +10,7 @@ namespace AppMuseo.Logic.Services
     {
         public string GetSchedaOperaData(string nomeOpera);
         public string GetSmallSchedaOperaData(string nomeOpera);
+
+        public string GetReallySmallSchedaOperaData(string nomeOpera);
     }
 }

@@ -156,5 +156,31 @@ namespace AppMuseo.Logic.Services
 
                 """;
         }
+
+        public string GetReallySmallSchedaOperaData(string nomeOpera)
+        {
+            return """
+                 {
+                  "artwork": {
+                    "title": "The Starry Night",
+                    "artist": {
+                      "name": "Vincent van Gogh",
+                      "nationality": "Dutch",
+                      "art_movement": "Post-Impressionism"
+                    },
+                    "year_created": 1889,
+                    "technique": {
+                      "type": "Oil on canvas",
+                      "dimensions_cm": {
+                        "height": 73.7,
+                        "width": 92.1
+                      }
+                    }
+                  }
+                }
+                
+
+                """;
+        }
     }
 }

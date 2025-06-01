@@ -38,7 +38,7 @@ public partial class AudioGuida : ContentPage
         {
             await foreach (
             var text
-            in llm.ChatAsync(userPrompt + schedaOperaDataProvider.GetSmallSchedaOperaData(tx_text.Text)))
+            in llm.ChatAsync(userPrompt + schedaOperaDataProvider.GetSchedaOperaData(tx_text.Text)))
             {
                 lbl_risp.Text += text;
                 //Debug.Write(text);
