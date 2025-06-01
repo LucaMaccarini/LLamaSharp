@@ -39,7 +39,7 @@ namespace AppMuseo.Logic.Services
         public void AddAssistantMessage(string message) => Session.AddAssistantMessage(message);
         public void AddUserMessage(string message) => Session.AddUserMessage(message);
 
-        public bool LoadModel(string appPackagePath, uint contextSize = 30000)
+        public bool LoadModel(string appPackagePath, uint contextSize)
         {
             try
             {

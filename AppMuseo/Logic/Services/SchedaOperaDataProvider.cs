@@ -113,6 +113,111 @@ namespace AppMuseo.Logic.Services
                 """;
         }
 
+        public string GetSchedaOperaDataIT(string nomeOpera)
+        {
+            return """
+                {
+                  "opera_d_arte": {
+                    "titolo": "La notte stellata",
+                    "titolo_originale": "The Starry Night",
+                    "artista": {
+                      "nome": "Vincent van Gogh",
+                      "nazionalità": "Olandese",
+                      "periodo_vita": "1853-1890",
+                      "movimento_artistico": "Post-Impressionismo",
+                      "breve_biografia": "Vincent van Gogh è stato un pittore olandese noto per il suo stile unico e l'intensa espressione emotiva. Nonostante la sua vita breve e travagliata, ha influenzato profondamente la pittura moderna."
+                    },
+                    "anno_creazione": 1889,
+                    "tecnica": {
+                      "tipo": "Olio su tela",
+                      "dimensioni": {
+                        "altezza_cm": 73.7,
+                        "larghezza_cm": 92.1
+                      },
+                      "luogo_creazione": "Saint-Rémy-de-Provence, Francia",
+                      "materiali": "Colori ad olio su tela di lino",
+                      "tecniche_pittoriche": {
+                        "pennellate": "Pennellate spesse e dinamiche, talvolta a spirale, che creano movimento nella composizione",
+                        "palette_cromatica": "Palette dominata da blu, gialli intensi, verdi e neri, con forti contrasti tra colori caldi e freddi",
+                        "impasto": "Uso frequente dell’impasto (pennellate molto spesse) per aggiungere texture e rilievo alla superficie"
+                      }
+                    },
+                    "contesto_storico": {
+                      "periodo": "Fine XIX secolo, periodo post-impressionista",
+                      "luogo": "Ospedale psichiatrico di Saint-Rémy, dove Van Gogh era in cura dopo un crollo nervoso",
+                      "influenze": [
+                        "Influenza della pittura impressionista e giapponese",
+                        "Interesse per la rappresentazione degli aspetti emotivi del paesaggio più che per la precisione realistica"
+                      ]
+                    },
+                    "descrizione_visiva": {
+                      "composizione": "Scena notturna di un villaggio sotto un cielo stellato vivido e dinamico",
+                      "elementi_principali": {
+                        "cielo": {
+                          "caratteristiche": [
+                            "Cielo notturno con motivi di luce vorticosi e a spirale",
+                            "Grandi stelle gialle e brillanti sparse ovunque",
+                            "Luna a mezzaluna gialla brillante, stilizzata",
+                            "Motivi vorticosi che suggeriscono movimento nell’aria"
+                          ],
+                          "colori": [
+                            "Blu profondo",
+                            "Azzurro",
+                            "Giallo dorato",
+                            "Riflessi bianchi attorno alle stelle e alle fonti luminose"
+                          ]
+                        },
+                        "paesaggio": {
+                          "villaggio": {
+                            "case": "Case semplificate e stilizzate con tetti a punta in toni terrosi freddi",
+                            "chiesa": "Una chiesa con un campanile centrale prominente si distingue nel villaggio",
+                            "colline": "Dolci colline ondulate sullo sfondo",
+                            "strade": "Stradine strette e semplici tra le case"
+                          },
+                          "cipresso": {
+                            "posizione": "In primo piano sul lato sinistro",
+                            "descrizione": "Albero alto e scuro simile a una fiamma che si protende verso il cielo",
+                            "funzione": "Funziona come collegamento verticale tra terra e cielo, in contrasto con le forme morbide del paesaggio"
+                          }
+                        }
+                      }
+                    },
+                    "emozioni_evocate": {
+                      "descrizione": "L’opera trasmette un senso di movimento e vita nel silenzio della notte, fondendo sensazioni di inquietudine e meraviglia.",
+                      "aspetti_psicologici_oggettivi": [
+                        "Il cielo dinamico suggerisce energia e turbolenza",
+                        "Il villaggio calmo appare come un rifugio pacifico",
+                        "Il cipresso crea una tensione verticale che rompe le linee orizzontali"
+                      ]
+                    },
+                    "curiosità": {
+                      "titolo_originale_errato": "Van Gogh inizialmente intitolò il dipinto 'Vista dalla finestra dell’asilo a Saint-Rémy', non 'La notte stellata'.",
+                      "posizione_attuale": "Il dipinto è conservato al Museum of Modern Art (MoMA) di New York.",
+                      "contesto_creazione": "Van Gogh realizzò l’opera durante un periodo di ricovero e instabilità emotiva.",
+                      "riflessioni_artista": "Van Gogh scrisse nelle lettere al fratello Theo del suo fascino per il cielo notturno, anche se non vide mai direttamente questa scena.",
+                      "ricerche_astronomiche": "Studi recenti hanno mostrato che le stelle e la luna nel dipinto corrispondono a una configurazione astronomica reale visibile da Saint-Rémy il 19 giugno 1889."
+                    },
+                    "impatto_culturale": {
+                      "influenza_artistica": [
+                        "Considerata una delle opere più iconiche del Post-Impressionismo e dell’arte moderna",
+                        "Ha influenzato artisti come Pablo Picasso e molti altri",
+                        "Oggetto di numerosi omaggi, parodie e reinterpretazioni nell’arte contemporanea"
+                      ],
+                      "presenza_mediatica": [
+                        "L’immagine è diventata un’icona della cultura pop",
+                        "Apparsa in film, pubblicità, album musicali e merchandising"
+                      ],
+                      "principali_mostre": [
+                        "Esposizione permanente al MoMA di New York",
+                        "Numerose mostre temporanee dedicate a Van Gogh in tutto il mondo"
+                      ]
+                    }
+                  }
+                }
+                
+                """;
+        }
+
         public string GetSmallSchedaOperaData(string nomeOpera)
         {
             return """
@@ -157,30 +262,5 @@ namespace AppMuseo.Logic.Services
                 """;
         }
 
-        public string GetReallySmallSchedaOperaData(string nomeOpera)
-        {
-            return """
-                 {
-                  "artwork": {
-                    "title": "The Starry Night",
-                    "artist": {
-                      "name": "Vincent van Gogh",
-                      "nationality": "Dutch",
-                      "art_movement": "Post-Impressionism"
-                    },
-                    "year_created": 1889,
-                    "technique": {
-                      "type": "Oil on canvas",
-                      "dimensions_cm": {
-                        "height": 73.7,
-                        "width": 92.1
-                      }
-                    }
-                  }
-                }
-                
-
-                """;
-        }
     }
 }

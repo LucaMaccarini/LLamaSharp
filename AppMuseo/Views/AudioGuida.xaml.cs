@@ -38,7 +38,7 @@ public partial class AudioGuida : ContentPage
         {
             await foreach (
             var text
-            in llm.ChatAsync(userPrompt + schedaOperaDataProvider.GetSchedaOperaData(tx_text.Text)))
+            in llm.ChatAsync(userPrompt + schedaOperaDataProvider.GetSchedaOperaDataIT(tx_text.Text)))
             {
                 lbl_risp.Text += text;
                 //Debug.Write(text);
@@ -48,6 +48,7 @@ public partial class AudioGuida : ContentPage
 
     private async void Leggi(object sender, EventArgs e)
     {
+        //var locales = await TextToSpeech.Default.GetLocalesAsync();
 
         var settings = new SpeechOptions()
         {
