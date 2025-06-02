@@ -12,7 +12,6 @@ public partial class AudioGuida : ContentPage
     private readonly ILLamaCpp llm;
     private readonly ISchedaOperaDataProvider schedaOperaDataProvider;
 
-    const string userPrompt = "";
     public AudioGuida(ILLamaCpp llm, ISchedaOperaDataProvider schedaOperaDataProvider)
     {
         InitializeComponent();
@@ -38,7 +37,7 @@ public partial class AudioGuida : ContentPage
         {
             await foreach (
             var text
-            in llm.ChatAsync(userPrompt + schedaOperaDataProvider.GetSchedaOperaDataIT(tx_text.Text)))
+            in llm.ChatAsync(schedaOperaDataProvider.GetSchedaOperaData(tx_text.Text)))
             {
                 lbl_risp.Text += text;
                 //Debug.Write(text);

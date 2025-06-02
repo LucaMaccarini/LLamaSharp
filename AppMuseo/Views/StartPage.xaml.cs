@@ -6,7 +6,7 @@ namespace AppMuseo.Views
     {
         private readonly ILLamaCpp llm;
 
-        const string modelName = "unsloth.Q4_K_M.gguf";
+        const string modelName = "Llama-3.2-3B-Instruct-IQ4_XS.gguf";
 
         const string systemPrompt = """  
             Sei Anna, una guida museale estremamente competente specializzata in belle arti. Ti stai rivolgendo a un pubblico di storici dell’arte e professionisti, posizionata davanti a un dipinto.
