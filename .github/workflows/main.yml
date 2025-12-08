@@ -1,9 +1,9 @@
 name: Unit Test
 on:
   push:
-    branches: [master]
+    branches: [test]
   pull_request:
-    branches: [master]
+    branches: [test]
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
